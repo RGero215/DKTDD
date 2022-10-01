@@ -62,6 +62,7 @@ class Greetings {
         var result = ""
         var nameWithComas = [String]()
         var name = name
+        var lastName = ""
         
         if names?.count == 1 {
             name = names?[0]
@@ -70,7 +71,7 @@ class Greetings {
         checkeNameWithComasOrDoubleQuotes(name, &nameWithComas)
         
         if nameWithComas.count >= 2 {
-            var lastName = nameWithComas[nameWithComas.count - 1]
+            lastName = nameWithComas.last ?? ""
             handlesArraysOfNames(nameWithComas, lastName, &result, &nameWithComas)
             return "Hello, \(result)"
         }
@@ -80,7 +81,7 @@ class Greetings {
         }
 
         if let names = names, names.count >= 2 {
-            var lastName = names[names.count - 1]
+            lastName = names.last ?? ""
             handlesArraysOfNames(names, lastName, &result, &nameWithComas)
             return "Hello, \(result)"
         }
