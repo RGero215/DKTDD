@@ -147,16 +147,22 @@ class GreetingsTests: XCTestCase {
         XCTAssertEqual(result, expected)
     }
     
-    // MARK: Allow commas in entries array
+    // MARK: Allow commas in array of two at second index
     func testValues_ArrayContainingComaTwoAtLastIndex() {
         let greetings = sut.greet(names: ["Juan", "Bob, Robert"])
         let expected = "Hello, Juan, Bob, and Robert"
         XCTAssertEqual(greetings, expected)
     }
-    
+    // MARK: Allow commas in array of two at first index
     func testValues_ArrayContainingComaTwoAtFirstIndex() {
         let greetings = sut.greet(names: ["Juan, Bob", "Robert"])
         let expected = "Hello, Juan, Bob, and Robert"
+        XCTAssertEqual(greetings, expected)
+    }
+    // MARK: Allow commas in array with more than two values
+    func testValues_ArrayContainingComasWithMoreThanTwoValues() {
+        let greetings = sut.greet(names: ["Juan, Bob", "Robert", "Pedro"])
+        let expected = "Hello, Juan, Bob, Robert, and Pedro"
         XCTAssertEqual(greetings, expected)
     }
 }
