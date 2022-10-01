@@ -16,7 +16,7 @@ class Greetings {
         var lastName = ""
         
         if names?.count == 1 {
-            name = names?[0]
+            name = names?.first
         }
         
         checkeNameWithComasOrDoubleQuotes(name, &nameWithComas)
