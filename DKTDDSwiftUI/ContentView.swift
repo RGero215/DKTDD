@@ -9,8 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text("Diamond Kinectics")
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundColor(Color.white)
+                .padding()
+            List(0 ..< 4) {item in
+                Text("Swing \(item)")
+            }
+            .listStyle(PlainListStyle())
+            
+        }
+        .background(Color.green)
     }
 }
 
