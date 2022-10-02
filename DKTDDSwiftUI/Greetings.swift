@@ -41,18 +41,10 @@ class Greetings {
         guard let names = names else { return "Hello, my friend" }
         let lastName = names.last ?? ""
        
-        if names.count == 1 {
-            if names[0].contains(",") {
-                var newNames = names[0].components(separatedBy: ", ")
-                handlesArraysOfNames(names, lastName, &result, &newNames)
-                return "Hello, \(result)"
-            }
-            return "Hello, \(names[0])"
-        }
-        
         handlesArraysOfNames(names, lastName, &result, &nameWithComas)
+        let namesString = nameWithComas.isEmpty ? names[0] : result
         
-        return names.count >= 2 ? "Hello, \(result)" : "Hello, \(names[0])"
+        return names.count >= 2 ? "Hello, \(result)" : "Hello, \(namesString)"
     }
 }
 
@@ -89,6 +81,7 @@ extension Greetings {
             checkeNameWithComasOrDoubleQuotes(name, &nameWithComas)
             if names.count == 1 && !nameWithComas.isEmpty {
                 result += "\(nameWithComas[0]), and \(nameWithComas[1])"
+                break
             }
             
             if names.count == 2 {
