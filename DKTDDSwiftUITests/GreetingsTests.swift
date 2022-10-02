@@ -165,4 +165,11 @@ class GreetingsTests: XCTestCase {
         let expected = "Hello, Juan, Bob, Robert, and Pedro"
         XCTAssertEqual(greetings, expected)
     }
+    
+    // MARK: Allow commas in array with more than two values and Shout
+    func testValues_ArrayContainingComasWithMoreThanTwoValuesAndShout() {
+        let greetings = sut.greet(names: ["Juan, Bob", "Robert", "PEDRO"])
+        let expected = "Hello, Juan, Bob, Robert, and PEDRO"
+        XCTAssertEqual(greetings, expected)
+    }
 }

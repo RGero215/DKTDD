@@ -9,21 +9,19 @@ import Foundation
 
 class Greetings {
     
-    /// Greet takes a string or string array with names.
+    /// Greet takes a string  with names.
     /// - Parameters:
     ///   - name: String name
-    ///   - names: String array of names
-    /// - Returns: return a string "Hello, name" if one name ||  "Hello, name1, and name[n]" if more than one name || "Hello, my friend" if empty string or nil.
-    func greet(name: String? = nil, names: [String]? = nil) -> String {
+    /// - Returns: return a string "Hello, name" if one name  || "Hello, my friend" if empty string or nil || "HELLO, NAME" if uppercase name
+    func greet(name: String? = nil) -> String {
         var result = ""
         var nameWithComas = [String]()
-        var name = name
         var lastName = ""
         
-        if names?.count == 1 {
-            name = names?.first
+        guard let name = name, name != "" else {
+            return "Hello, my friend"
         }
-        
+
         checkeNameWithComasOrDoubleQuotes(name, &nameWithComas)
         
         if nameWithComas.count >= 2 {
@@ -31,21 +29,42 @@ class Greetings {
             handlesArraysOfNames(nameWithComas, lastName, &result, &nameWithComas)
             return "Hello, \(result)"
         }
-        
-        if let name = name, name != "" && names == nil {
-            return name == name.uppercased() ? "HELLO, \(name)" : "Hello, \(name)"
-        }
 
-        if let names = names, names.count >= 2 {
+        return name == name.uppercased() ? "HELLO, \(name)" : "Hello, \(name)"
+    }
+    
+    
+    /// Greet takes a String array and return a string of names formatted. Ex: ["Jon", "Peter", "Cris"] -> "Hello, Jon, Peter and Cris"
+    /// this declaration was created to avoid overload.
+    /// - Parameter names: String array of names
+    /// - Returns: String with names formatted
+    func greet(names: [String]?) -> String {
+        var result = ""
+        var nameWithComas = [String]()
+        var lastName = ""
+        guard let names = names else { return "Hello, my friend" }
+       
+        if names.count == 1 {
+            if names[0].contains(",") {
+                var newNames = names[0].components(separatedBy: ", ")
+                handlesArraysOfNames(names, lastName, &result, &newNames)
+                return "Hello, \(result)"
+            }
+            return "Hello, \(names[0])"
+        }
+        
+        if  names.count >= 2 {
             lastName = names.last ?? ""
             handlesArraysOfNames(names, lastName, &result, &nameWithComas)
             return "Hello, \(result)"
         }
         
         
-        return "Hello, \(names?[0] ?? "my friend")"
+        return "Hello, \(names[0])"
     }
 }
+
+
 
 extension Greetings {
     
@@ -77,7 +96,7 @@ extension Greetings {
         for name in names {
             checkeNameWithComasOrDoubleQuotes(name, &nameWithComas)
             if names.count == 1 && !nameWithComas.isEmpty {
-                result += "\(names[0]), and \(names[1])"
+                result += "\(nameWithComas[0]), and \(nameWithComas[1])"
             }
             
             if names.count == 2 {
