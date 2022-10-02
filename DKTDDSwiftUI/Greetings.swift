@@ -11,7 +11,10 @@ class Greetings {
     // MARK: Properties
     var result = ""
     var nameWithCommas = [String]()
+    var lastName = ""
+    var namesString = ""
     
+    // MARK: Methods
     /// Greet takes a string  with names.
     /// - Parameters:
     ///   - name: String name
@@ -22,7 +25,7 @@ class Greetings {
         }
 
         checkNameWithCommasOrDoubleQuotes(name, &nameWithCommas)
-        let lastName = nameWithCommas.last ?? ""
+        lastName = nameWithCommas.last ?? ""
         
         handlesArraysOfNames(nameWithCommas, lastName, &result, &nameWithCommas)
         result = nameWithCommas.count >= 2 ? "Hello, \(result)" : "Hello, \(name)"
@@ -37,10 +40,10 @@ class Greetings {
     /// - Returns: String with names formatted
     func greet(names: [String]?) -> String {
         guard let names = names else { return "Hello, my friend" }
-        let lastName = names.last ?? ""
+        lastName = names.last ?? ""
        
         handlesArraysOfNames(names, lastName, &result, &nameWithCommas)
-        let namesString = nameWithCommas.isEmpty ? names[0] : result
+        namesString = nameWithCommas.isEmpty ? names[0] : result
         
         return names.count >= 2 ? "Hello, \(result)" : "Hello, \(namesString)"
     }
@@ -49,7 +52,7 @@ class Greetings {
 
 
 extension Greetings {
-    
+    // MARK: Helpers
     /// This helper function helps when array of names has two values and properly format the result. Ex: ["Jon", "Peter"] -> "Jon, and Peter"
     /// It also checks if the array input has a value that has a string with two names separated with comma. Ex: ["Jon, Peter", "Cris"]
     /// - Parameters:
