@@ -15,17 +15,17 @@ class Greetings {
     /// - Returns: return a string "Hello, name" if one name  || "Hello, my friend" if empty string or nil || "HELLO, NAME" if uppercase name
     func greet(name: String? = nil) -> String {
         var result = ""
-        var nameWithComas = [String]()
+        var nameWithCommas = [String]()
         
         guard let name = name, name != "" else {
             return "Hello, my friend"
         }
 
-        checkeNameWithComasOrDoubleQuotes(name, &nameWithComas)
-        let lastName = nameWithComas.last ?? ""
+        checkNameWithCommasOrDoubleQuotes(name, &nameWithCommas)
+        let lastName = nameWithCommas.last ?? ""
         
-        handlesArraysOfNames(nameWithComas, lastName, &result, &nameWithComas)
-        result = nameWithComas.count >= 2 ? "Hello, \(result)" : "Hello, \(name)"
+        handlesArraysOfNames(nameWithCommas, lastName, &result, &nameWithCommas)
+        result = nameWithCommas.count >= 2 ? "Hello, \(result)" : "Hello, \(name)"
 
         return name == name.uppercased() ? "HELLO, \(name)" : result
     }
@@ -37,12 +37,12 @@ class Greetings {
     /// - Returns: String with names formatted
     func greet(names: [String]?) -> String {
         var result = ""
-        var nameWithComas = [String]()
+        var nameWithCommas = [String]()
         guard let names = names else { return "Hello, my friend" }
         let lastName = names.last ?? ""
        
-        handlesArraysOfNames(names, lastName, &result, &nameWithComas)
-        let namesString = nameWithComas.isEmpty ? names[0] : result
+        handlesArraysOfNames(names, lastName, &result, &nameWithCommas)
+        let namesString = nameWithCommas.isEmpty ? names[0] : result
         
         return names.count >= 2 ? "Hello, \(result)" : "Hello, \(namesString)"
     }
@@ -75,12 +75,12 @@ extension Greetings {
     ///   - lastName: Last item in the array of name. Not to be confuse with Peter's Last Name.
     ///   - result: String of formatted names
     ///   - nameWithComas: String Array containing a string with two name separated with comma. Ex: ["Peter, Jon", "Cris"]
-    func handlesArraysOfNames(_ names: [String], _ lastName: String, _ result: inout String, _ nameWithComas: inout [String] ) {
-        var names = nameWithComas.isEmpty ? names : nameWithComas
+    func handlesArraysOfNames(_ names: [String], _ lastName: String, _ result: inout String, _ nameWithCommas: inout [String] ) {
+        var names = nameWithCommas.isEmpty ? names : nameWithCommas
         for name in names {
-            checkeNameWithComasOrDoubleQuotes(name, &nameWithComas)
-            if names.count == 1 && !nameWithComas.isEmpty {
-                result += "\(nameWithComas[0]), and \(nameWithComas[1])"
+            checkNameWithCommasOrDoubleQuotes(name, &nameWithCommas)
+            if names.count == 1 && !nameWithCommas.isEmpty {
+                result += "\(nameWithCommas[0]), and \(nameWithCommas[1])"
                 break
             }
             
@@ -106,14 +106,14 @@ extension Greetings {
     /// - Parameters:
     ///   - name: String containing comma or double quotes.
     ///   - nameWithComas: String Array containing value with commas.
-    func checkeNameWithComasOrDoubleQuotes(_ name: String?, _ nameWithComas: inout [String]) {
+    func checkNameWithCommasOrDoubleQuotes(_ name: String?, _ nameWithCommas: inout [String]) {
         if  let name = name, name.contains("\"") && name.contains(",") {
             let newNames = name.replacingOccurrences(of: "\"", with: "")
-            nameWithComas = newNames.components(separatedBy: ", ")
+            nameWithCommas = newNames.components(separatedBy: ", ")
         }
         
         if let name = name,  name.contains(",") && !name.contains("\"") {
-            nameWithComas = name.components(separatedBy: ", ")
+            nameWithCommas = name.components(separatedBy: ", ")
         }
     }
 }

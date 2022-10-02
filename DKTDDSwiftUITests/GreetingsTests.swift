@@ -115,7 +115,7 @@ class GreetingsTests: XCTestCase {
     // MARK: 7. Split names with commas into separate entries
     // If any entries in name are a string containing a comma, split it as its own input. For example, when name is [“Bob”,
     // “Charlie, Dianne”], then the method should return the string “Hello, Bob, Charlie, and Dianne.”
-    func testValues_StringContainingComa() {
+    func testValues_StringContainingComma() {
         let greetings = sut.greet(name: "Bob, Robert")
         let expected = "Hello, Bob, and Robert"
         XCTAssertEqual(greetings, expected)
@@ -125,14 +125,14 @@ class GreetingsTests: XCTestCase {
     // Allow the input to escape intentional commas introduced by the previous requirement. These can be escaped in the
     // same manner that CSV is, with double quotes surrounding the entry. For example, when name is “Bob”, “”Charlie,
     // Dianne””, then the method should return the string “Hello, Bob and Charlie, Dianne.”
-    func testValues_StringContainingDoubleQuotesAndComas() {
+    func testValues_StringContainingDoubleQuotesAndCommas() {
         let greetings = sut.greet(name: "Bob, \"Robert, Charlie\"")
         let expected = "Hello, Bob, Robert, and Charlie"
         XCTAssertEqual(greetings, expected)
     }
     
     // MARK: Allow commas in entries array
-    func testValues_ArrayContainingComa() {
+    func testValues_ArrayContainingComma() {
         let greetings = sut.greet(names: ["Bob, Robert"])
         let expected = "Hello, Bob, and Robert"
         XCTAssertEqual(greetings, expected)
@@ -148,26 +148,26 @@ class GreetingsTests: XCTestCase {
     }
     
     // MARK: Allow commas in array of two at second index
-    func testValues_ArrayContainingComaTwoAtLastIndex() {
+    func testValues_ArrayContainingCommasTwoAtLastIndex() {
         let greetings = sut.greet(names: ["Juan", "Bob, Robert"])
         let expected = "Hello, Juan, Bob, and Robert"
         XCTAssertEqual(greetings, expected)
     }
     // MARK: Allow commas in array of two at first index
-    func testValues_ArrayContainingComaTwoAtFirstIndex() {
+    func testValues_ArrayContainingCommasTwoAtFirstIndex() {
         let greetings = sut.greet(names: ["Juan, Bob", "Robert"])
         let expected = "Hello, Juan, Bob, and Robert"
         XCTAssertEqual(greetings, expected)
     }
     // MARK: Allow commas in array with more than two values
-    func testValues_ArrayContainingComasWithMoreThanTwoValues() {
+    func testValues_ArrayContainingCommasWithMoreThanTwoValues() {
         let greetings = sut.greet(names: ["Juan, Bob", "Robert", "Pedro"])
         let expected = "Hello, Juan, Bob, Robert, and Pedro"
         XCTAssertEqual(greetings, expected)
     }
     
     // MARK: Allow commas in array with more than two values and Shout
-    func testValues_ArrayContainingComasWithMoreThanTwoValuesAndShout() {
+    func testValues_ArrayContainingCommasWithMoreThanTwoValuesAndShout() {
         let greetings = sut.greet(names: ["Juan, Bob", "Robert", "PEDRO"])
         let expected = "Hello, Juan, Bob, Robert, and PEDRO"
         XCTAssertEqual(greetings, expected)
