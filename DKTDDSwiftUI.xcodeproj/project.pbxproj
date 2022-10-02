@@ -16,6 +16,7 @@
 		DF3FF43428E7485E006DA29D /* DKTDDSwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3FF43328E7485E006DA29D /* DKTDDSwiftUIUITestsLaunchTests.swift */; };
 		DF3FF44B28E76871006DA29D /* GreetingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3FF44A28E76871006DA29D /* GreetingsTests.swift */; };
 		DF3FF44D28E76903006DA29D /* Greetings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3FF44C28E76903006DA29D /* Greetings.swift */; };
+		DFB48B3D28EA191C00C926EA /* GreetingsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB48B3C28EA191C00C926EA /* GreetingsExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		DF3FF43328E7485E006DA29D /* DKTDDSwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DKTDDSwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DF3FF44A28E76871006DA29D /* GreetingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingsTests.swift; sourceTree = "<group>"; };
 		DF3FF44C28E76903006DA29D /* Greetings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Greetings.swift; sourceTree = "<group>"; };
+		DFB48B3C28EA191C00C926EA /* GreetingsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingsExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		DF3FF41528E7485C006DA29D /* DKTDDSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				DFB48B3B28EA18A000C926EA /* Extensions */,
 				DF3FF41628E7485C006DA29D /* DKTDDSwiftUIApp.swift */,
 				DF3FF41828E7485C006DA29D /* ContentView.swift */,
 				DF3FF41A28E7485E006DA29D /* Assets.xcassets */,
@@ -131,6 +134,14 @@
 				DF3FF43328E7485E006DA29D /* DKTDDSwiftUIUITestsLaunchTests.swift */,
 			);
 			path = DKTDDSwiftUIUITests;
+			sourceTree = "<group>";
+		};
+		DFB48B3B28EA18A000C926EA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DFB48B3C28EA191C00C926EA /* GreetingsExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFB48B3D28EA191C00C926EA /* GreetingsExtension.swift in Sources */,
 				DF3FF44D28E76903006DA29D /* Greetings.swift in Sources */,
 				DF3FF41928E7485C006DA29D /* ContentView.swift in Sources */,
 				DF3FF41728E7485C006DA29D /* DKTDDSwiftUIApp.swift in Sources */,
