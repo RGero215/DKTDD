@@ -8,15 +8,15 @@
 import Foundation
 
 class Greetings {
+    // MARK: Properties
+    var result = ""
+    var nameWithCommas = [String]()
     
     /// Greet takes a string  with names.
     /// - Parameters:
     ///   - name: String name
     /// - Returns: return a string "Hello, name" if one name  || "Hello, my friend" if empty string or nil || "HELLO, NAME" if uppercase name
     func greet(name: String? = nil) -> String {
-        var result = ""
-        var nameWithCommas = [String]()
-        
         guard let name = name, name != "" else {
             return "Hello, my friend"
         }
@@ -36,8 +36,6 @@ class Greetings {
     /// - Parameter names: String array of names
     /// - Returns: String with names formatted
     func greet(names: [String]?) -> String {
-        var result = ""
-        var nameWithCommas = [String]()
         guard let names = names else { return "Hello, my friend" }
         let lastName = names.last ?? ""
        
