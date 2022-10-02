@@ -16,21 +16,18 @@ class Greetings {
     func greet(name: String? = nil) -> String {
         var result = ""
         var nameWithComas = [String]()
-        var lastName = ""
         
         guard let name = name, name != "" else {
             return "Hello, my friend"
         }
 
         checkeNameWithComasOrDoubleQuotes(name, &nameWithComas)
+        let lastName = nameWithComas.last ?? ""
         
-        if nameWithComas.count >= 2 {
-            lastName = nameWithComas.last ?? ""
-            handlesArraysOfNames(nameWithComas, lastName, &result, &nameWithComas)
-            return "Hello, \(result)"
-        }
+        handlesArraysOfNames(nameWithComas, lastName, &result, &nameWithComas)
+        result = nameWithComas.count >= 2 ? "Hello, \(result)" : "Hello, \(name)"
 
-        return name == name.uppercased() ? "HELLO, \(name)" : "Hello, \(name)"
+        return name == name.uppercased() ? "HELLO, \(name)" : result
     }
     
     
@@ -41,8 +38,8 @@ class Greetings {
     func greet(names: [String]?) -> String {
         var result = ""
         var nameWithComas = [String]()
-        var lastName = ""
         guard let names = names else { return "Hello, my friend" }
+        let lastName = names.last ?? ""
        
         if names.count == 1 {
             if names[0].contains(",") {
@@ -53,14 +50,9 @@ class Greetings {
             return "Hello, \(names[0])"
         }
         
-        if  names.count >= 2 {
-            lastName = names.last ?? ""
-            handlesArraysOfNames(names, lastName, &result, &nameWithComas)
-            return "Hello, \(result)"
-        }
+        handlesArraysOfNames(names, lastName, &result, &nameWithComas)
         
-        
-        return "Hello, \(names[0])"
+        return names.count >= 2 ? "Hello, \(result)" : "Hello, \(names[0])"
     }
 }
 
