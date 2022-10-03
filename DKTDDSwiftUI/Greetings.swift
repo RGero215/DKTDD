@@ -7,19 +7,19 @@
 
 import Foundation
 
-class Greetings {
+struct Greetings {
     // MARK: Properties
-    var result = ""
-    var nameWithCommas = [String]()
-    var lastName = ""
-    var namesString = ""
+    private var result = ""
+    private var nameWithCommas = [String]()
+    private var lastName = ""
+    private var namesString = ""
     
     // MARK: Methods
     /// Greet takes a string  with names.
     /// - Parameters:
     ///   - name: String name
     /// - Returns: return a string "Hello, name" if one name  || "Hello, my friend" if empty string or nil || "HELLO, NAME" if uppercase name
-    func greet(name: String? = nil) -> String {
+    mutating func greet(name: String? = nil) -> String {
         guard let name = name, name != "" else {
             return "Hello, my friend"
         }
@@ -38,7 +38,7 @@ class Greetings {
     /// this declaration was created to avoid overload.
     /// - Parameter names: String array of names
     /// - Returns: String with names formatted
-    func greet(names: [String]?) -> String {
+    mutating func greet(names: [String]?) -> String {
         guard let names = names else { return "Hello, my friend" }
         lastName = names.last ?? ""
        

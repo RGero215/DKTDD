@@ -13,8 +13,9 @@ extension Greetings {
     /// It also checks if the array input has a value that has a string with two names separated with comma. Ex: ["Jon, Peter", "Cris"]
     /// - Parameters:
     ///   - names: String array containing two names
-    ///   - result: Names formatted string
-    func handleNamesCountEqualsTwo(_ names: inout [String], _ result: inout String) {
+    /// - Returns: result, a string with names formatted 
+    func handleNamesCountEqualsTwo(_ names: inout [String]) -> String {
+        var result = ""
         if names[0].contains(",") {
             let newNames = names[0].components(separatedBy: ", ")
             result += "\(newNames[0]), \(newNames[1]), and \(names[1])"
@@ -24,6 +25,7 @@ extension Greetings {
         } else {
             result += "\(names[0]), and \(names[1])"
         }
+        return result
     }
     
     /// This helper function handles an input with an arrays of names. Ex: ["Peter", "Jon", "Cris"]
@@ -42,7 +44,7 @@ extension Greetings {
             }
             
             if names.count == 2 {
-                handleNamesCountEqualsTwo(&names, &result)
+                result = handleNamesCountEqualsTwo(&names)
                 break
             }
             

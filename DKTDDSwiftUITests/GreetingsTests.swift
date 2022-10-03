@@ -140,11 +140,10 @@ class GreetingsTests: XCTestCase {
     
     //MARK: Helper Handle Array of two
     func testValues_HelperToHandleArrayCountOfTwo() {
-        var result = ""
         var names = ["Juan", "Bob, Robert"]
-        sut.handleNamesCountEqualsTwo(&names, &result)
+        let value = sut.handleNamesCountEqualsTwo(&names)
         let expected = "Juan, Bob, and Robert"
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(value, expected)
     }
     
     // MARK: Allow commas in array of two at second index
