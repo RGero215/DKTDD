@@ -14,7 +14,7 @@ extension Greetings {
     /// - Parameters:
     ///   - names: String array containing two names
     /// - Returns: result, a string with names formatted 
-    func handleNamesCountEqualsTwo(_ names: inout [String]) -> String {
+    func handleNamesCountEqualsTwo(_ names: [String]) -> String {
         var result = ""
         if names[0].contains(",") {
             let newNames = names[0].components(separatedBy: ", ")
@@ -34,17 +34,18 @@ extension Greetings {
     ///   - lastName: Last item in the array of name. Not to be confuse with Peter's Last Name.
     ///   - result: String of formatted names
     ///   - nameWithComas: String Array containing a string with two name separated with comma. Ex: ["Peter, Jon", "Cris"]
-    func handlesArraysOfNames(_ names: [String], _ lastName: String, _ result: inout String, _ nameWithCommas: inout [String] ) {
-        var names = nameWithCommas.isEmpty ? names : nameWithCommas
+    func handlesArraysOfNamesAndReturnResult(_ names: [String]) -> String{
+        var result = ""
+        let lastName = names.last ?? ""
         for name in names {
-            checkNameWithCommasOrDoubleQuotes(name, &nameWithCommas)
+            let nameWithCommas = checkNameWithCommasOrDoubleQuotes(name)
             if names.count == 1 && !nameWithCommas.isEmpty {
                 result += "\(nameWithCommas[0]), and \(nameWithCommas[1])"
                 break
             }
             
             if names.count == 2 {
-                result = handleNamesCountEqualsTwo(&names)
+                result = handleNamesCountEqualsTwo(names)
                 break
             }
             
@@ -59,13 +60,15 @@ extension Greetings {
             }
             
         }
+        return result
     }
     
     /// This helper checks if string contains comma or double quotes and properly format the string name.
     /// - Parameters:
     ///   - name: String containing comma or double quotes.
     ///   - nameWithComas: String Array containing value with commas.
-    func checkNameWithCommasOrDoubleQuotes(_ name: String?, _ nameWithCommas: inout [String]) {
+    func checkNameWithCommasOrDoubleQuotes(_ name: String?) -> [String] {
+        var nameWithCommas = [String]()
         if  let name = name, name.contains("\"") && name.contains(",") {
             let newNames = name.replacingOccurrences(of: "\"", with: "")
             nameWithCommas = newNames.components(separatedBy: ", ")
@@ -74,5 +77,6 @@ extension Greetings {
         if let name = name,  name.contains(",") && !name.contains("\"") {
             nameWithCommas = name.components(separatedBy: ", ")
         }
+        return nameWithCommas
     }
 }

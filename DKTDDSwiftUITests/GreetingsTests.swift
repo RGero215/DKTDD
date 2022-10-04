@@ -68,24 +68,16 @@ class GreetingsTests: XCTestCase {
     }
     // MARK: Helper Method 3 names
     func testValues_HandleArraysOfNamesHelperMethod() {
-        var result = ""
         let array = ["Bob", "Robert", "Juan"]
-        let lastName = array[array.count - 1]
-        var nameWithComas = [String]()
-        
-        sut.handlesArraysOfNames(array, lastName, &result, &nameWithComas)
+        let result = sut.handlesArraysOfNamesAndReturnResult(array)
         let expected = "Bob, Robert, and Juan"
         XCTAssertEqual(result, expected)
     }
     
     // MARK: Helper Method 2 names
     func testValues_HandleArraysOfNamesHelperMethodWithTwoNames() {
-        var result = ""
         let array = ["Bob", "Robert"]
-        let lastName = array[array.count - 1]
-        var nameWithComas = [String]()
-        
-        sut.handlesArraysOfNames(array, lastName, &result, &nameWithComas)
+        let result = sut.handlesArraysOfNamesAndReturnResult(array)
         let expected = "Bob, and Robert"
         XCTAssertEqual(result, expected)
     }
@@ -140,8 +132,8 @@ class GreetingsTests: XCTestCase {
     
     //MARK: Helper Handle Array of two
     func testValues_HelperToHandleArrayCountOfTwo() {
-        var names = ["Juan", "Bob, Robert"]
-        let value = sut.handleNamesCountEqualsTwo(&names)
+        let names = ["Juan", "Bob, Robert"]
+        let value = sut.handleNamesCountEqualsTwo(names)
         let expected = "Juan, Bob, and Robert"
         XCTAssertEqual(value, expected)
     }
