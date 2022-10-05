@@ -18,12 +18,12 @@ extension Greetings {
         var result = ""
         if names[0].contains(",") {
             let newNames = names[0].components(separatedBy: ", ")
-            result += "\(newNames[0]), \(newNames[1]), and \(names[1])"
+            result = "\(newNames[0]), \(newNames[1]), and \(names[1])"
         } else if names[1].contains(","){
             let newNames = names[1].components(separatedBy: ", ")
-            result += "\(names[0]), \(newNames[0]), and \(newNames[1])"
+            result = "\(names[0]), \(newNames[0]), and \(newNames[1])"
         } else {
-            result += "\(names[0]), and \(names[1])"
+            result = "\(names[0]), and \(names[1])"
         }
         return result
     }
@@ -41,12 +41,12 @@ extension Greetings {
             let nameWithCommas = checkNameWithCommasOrDoubleQuotes(name)
             if names.count == 1 && !nameWithCommas.isEmpty {
                 result += "\(nameWithCommas[0]), and \(nameWithCommas[1])"
-                break
+                return result
             }
             
             if names.count == 2 {
                 result = handleNamesCountEqualsTwo(names)
-                break
+                return result
             }
             
             if lastName == name {
@@ -69,12 +69,12 @@ extension Greetings {
     ///   - nameWithComas: String Array containing value with commas.
     func checkNameWithCommasOrDoubleQuotes(_ name: String?) -> [String] {
         var nameWithCommas = [String]()
-        if  let name = name, name.contains("\"") && name.contains(",") {
+        if  let name = name, name.contains("\""), name.contains(",") {
             let newNames = name.replacingOccurrences(of: "\"", with: "")
             nameWithCommas = newNames.components(separatedBy: ", ")
         }
         
-        if let name = name,  name.contains(",") && !name.contains("\"") {
+        if let name = name,  name.contains(","), !name.contains("\"") {
             nameWithCommas = name.components(separatedBy: ", ")
         }
         return nameWithCommas
